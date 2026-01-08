@@ -2,7 +2,12 @@
   "name": "finance-tracker-api",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "db:init": "wrangler d1 execute finance_tracker_db --local --file=./schema.sql",
@@ -13,7 +18,14 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241127.0",
+    "@eslint/js": "^9.39.2",
+    "@typescript-eslint/eslint-plugin": "^8.52.0",
+    "@typescript-eslint/parser": "^8.52.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.4",
     "typescript": "^5.7.2",
+    "typescript-eslint": "^8.52.0",
     "wrangler": "^4.54.0"
   },
   "dependencies": {
