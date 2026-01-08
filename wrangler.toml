@@ -1,0 +1,24 @@
+name = "finance-tracker-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# Deploy to Asia-Pacific region
+[placement]
+mode = "smart"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "finance_tracker_db"
+database_id = "24d14bd3-4763-45a1-ab21-e474ddf37aeb"
+# D1 database location for APAC
+location_hint = "apac"
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true
+
+[[kv_namespaces]]
+binding = "KV"
+id = "cdd49f4268b94f9595873b93a4feea5c"

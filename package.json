@@ -1,0 +1,22 @@
+{
+  "name": "finance-tracker-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute finance_tracker_db --local --file=./schema.sql",
+    "db:seed": "wrangler d1 execute finance_tracker_db --local --file=./seed.sql",
+    "db:init:remote": "wrangler d1 execute finance_tracker_db --remote --file=./schema.sql",
+    "db:seed:remote": "wrangler d1 execute finance_tracker_db --remote --file=./seed.sql",
+    "db:drop:remote": "wrangler d1 execute finance_tracker_db --remote --command \"DROP TABLE IF EXISTS transactions; DROP TABLE IF EXISTS accounts; DROP TABLE IF EXISTS banks; DROP TABLE IF EXISTS categories; DROP TABLE IF EXISTS goals;\""
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241127.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^4.54.0"
+  },
+  "dependencies": {
+    "zod": "^4.3.5"
+  }
+}
