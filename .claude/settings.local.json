@@ -12,7 +12,8 @@
       "Bash(pnpm run format:*)",
       "Bash(pnpm run lint:fix:*)",
       "Bash(npx tsc:*)",
-      "Bash(gt --version:*)"
+      "Bash(gt --version:*)",
+      "Bash(pnpm run test:*)"
     ]
   }
 }
