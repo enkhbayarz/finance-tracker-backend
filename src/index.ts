@@ -1,12 +1,31 @@
 import { Env } from "./types";
 import { Router } from "./router";
 import { cors, json } from "./utils/response";
+import { AppError } from "./errors";
 import { getBanks, createBank } from "./handlers/banks";
 import { getAccounts, createAccount, updateAccount } from "./handlers/accounts";
-import { getCategories, createCategory, updateCategory } from "./handlers/categories";
-import { getTransactions, getTransaction, createTransaction, updateTransaction } from "./handlers/transactions";
-import { getGoals, getActiveGoal, createGoal, updateGoal } from "./handlers/goals";
-import { getMonthlyReport, getCategoryReport, getTrendsReport } from "./handlers/reports";
+import {
+  getCategories,
+  createCategory,
+  updateCategory,
+} from "./handlers/categories";
+import {
+  getTransactions,
+  getTransaction,
+  createTransaction,
+  updateTransaction,
+} from "./handlers/transactions";
+import {
+  getGoals,
+  getActiveGoal,
+  createGoal,
+  updateGoal,
+} from "./handlers/goals";
+import {
+  getMonthlyReport,
+  getCategoryReport,
+  getTrendsReport,
+} from "./handlers/reports";
 import { authenticate } from "./middleware/auth";
 import { AuthenticatedRequest } from "./types";
 
@@ -52,10 +71,11 @@ export default {
       (request as AuthenticatedRequest).user = user;
       return await router.handle(request as AuthenticatedRequest, env);
     } catch (e) {
-      if (e instanceof Error) { // AppError extends Error
-        // Ideally we return 401, but router.handle might wrap generic errors.
-        // Since authenticate throws AppError with status, we should return that.
-        return json({ error: e.message }, (e as any).statusCode || 500);
+      if (e instanceof AppError) {
+        return json({ error: e.message }, e.statusCode);
+      }
+      if (e instanceof Error) {
+        return json({ error: e.message }, 500);
       }
       return json({ error: "Internal Server Error" }, 500);
     }
