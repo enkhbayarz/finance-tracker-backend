@@ -32,6 +32,11 @@ pnpm run lint            # Run ESLint
 pnpm run lint:fix        # Run ESLint with auto-fix
 pnpm run format          # Format code with Prettier
 pnpm run format:check    # Check formatting without writing
+
+# Testing
+pnpm run test            # Run all tests
+pnpm run test:watch      # Run tests in watch mode
+pnpm run test:coverage   # Run tests with coverage report
 ```
 
 ## Architecture
